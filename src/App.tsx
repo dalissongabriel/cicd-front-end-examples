@@ -1,23 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [isHidden, setIsHidden] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+      <header>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <button onClick={() => setIsHidden((prev) => !prev)}>
+            {isHidden ? "Exibir" : "Esconder"}
+          </button>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {!isHidden && <p>Agora vc me vê</p>}
       </header>
     </div>
   );
