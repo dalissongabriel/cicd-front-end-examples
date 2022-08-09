@@ -1,20 +1,19 @@
-name: CI
+name: ci-sonarclound
 on:
   pull_request:
     branches:
       - develop
-    types: [opened, synchronize, reopened]
+
 jobs:
   run-ci:
-    name: Run continuos integration
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: SonarCloud Scan
       - run: npm run test:ci:cov
+      - name: SonarCloud Scan
       - uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
