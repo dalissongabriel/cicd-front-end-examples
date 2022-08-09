@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 
 describe("App component", () => {
@@ -14,22 +15,22 @@ describe("App component", () => {
     expect(text).toBeInTheDocument();
   });
 
-  // it("should hidde text when click on hidde button", async () => {
-  //   render(<App />);
-  //   const button = screen.getByRole("button");
+  it("should hidde text when click on hidde button", async () => {
+    render(<App />);
+    const button = screen.getByRole("button");
 
-  //   userEvent.click(button);
-  //   const text = screen.queryByText(/agora/i);
-  //   expect(text).not.toBeInTheDocument();
-  // });
+    userEvent.click(button);
+    const text = screen.queryByText(/agora/i);
+    expect(text).not.toBeInTheDocument();
+  });
 
-  // it("should show again the text when click on hidde button again", async () => {
-  //   render(<App />);
-  //   const button = screen.getByRole("button");
+  it("should show again the text when click on hidde button again", async () => {
+    render(<App />);
+    const button = screen.getByRole("button");
 
-  //   userEvent.click(button);
-  //   userEvent.click(button);
-  //   const text = screen.queryByText(/agora/i);
-  //   expect(text).toBeInTheDocument();
-  // });
+    userEvent.click(button);
+    userEvent.click(button);
+    const text = screen.queryByText(/agora/i);
+    expect(text).toBeInTheDocument();
+  });
 });
